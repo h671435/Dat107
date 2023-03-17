@@ -14,9 +14,9 @@ public class Main1_PlainOldJDBC {
 //	static final String USER = "postgres";
 //	static final String PASS = Passwords.LOCALHOST_PASSWORD;
 
-	static final String DB_URL = "jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/lph";
-	static final String USER = "lph";
-	static final String PASS = Passwords.AZURE_PASSWORD;
+	static final String DB_URL = "jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/h671435";
+	static final String USER = "h671435";
+	static final String PASS = "pass";
 
 	public static void main(String[] args) {
 

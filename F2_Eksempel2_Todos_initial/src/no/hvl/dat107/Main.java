@@ -2,7 +2,9 @@ package no.hvl.dat107;
 
 import java.util.Scanner;
 
+import java.util.List;
 
+// Hei
 public class Main {
 
 	//-------------------------------------------------------------------------
@@ -23,7 +25,10 @@ public class Main {
 		 *  3, 'Ta ut bosset'
 		 */
 
-		// a) Hente ut alle todos 
+		// a) Hente ut alle todos
+		List<Todo> todos = todoDAO.finnAlleTodos();
+		pauseOgSjekkPgAdmin(todos, "");
+		
 		// b) Hente ut todo med pk=2
 		// c.i)   Hente ut SINGLE todo med tekst="Handle mat" 
 		// c.ii)  Hente ut SINGLE todo med tekst="Vaske bilen" (som ikke finnes) 
@@ -39,10 +44,10 @@ public class Main {
 	
 	private static Scanner scanner = new Scanner(System.in);
 	
-	private static void pauseOgSjekkPgAdmin(String sisteAction) {
+	private static void pauseOgSjekkPgAdmin(List<Todo> todos, String sisteAction) {
 		System.out.println("\n" + sisteAction);
 		System.out.println("\nTodo-objekter i persistence context nå:");
-//		todoDAO.finnAlleTodos().forEach(System.out::println);
+		todos.forEach(System.out::println);
 		System.out.println("\nSjekk om det ser likt ut i PgAdmin.");
 		System.out.println("\nTrykk \"ENTER\" for å fortsette programmet ...");
 		scanner.nextLine();

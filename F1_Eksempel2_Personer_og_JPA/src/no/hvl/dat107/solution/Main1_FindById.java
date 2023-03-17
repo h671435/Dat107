@@ -17,7 +17,7 @@ public class Main1_FindById {
 
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("personPersistenceUnit", 
-				Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+				Map.of("jakarta.persistence.jdbc.password", "pass"));
 
 		System.out.println("Kobler til database...");
         EntityManager em = emf.createEntityManager();

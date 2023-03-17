@@ -6,12 +6,14 @@
 	
 	<persistence-unit name="todoPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 	
+		<class>no.hvl.dat107.Todo</class>
+		
 		<properties>
 		    <!--  Generelle JPA properties -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			<property name="jakarta.persistence.jdbc.url" 
-				value="jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/lph"/>
-			<property name="jakarta.persistence.jdbc.user" value="lph"/>
+				value="jdbc:postgresql://ider-database.westeurope.cloudapp.azure.com:5432/h671435"/>
+			<property name="jakarta.persistence.jdbc.user" value="h671435"/>
 
 			<!-- Passordet blir satt i Java-koden i stedet 
 			<property name="jakarta.persistence.jdbc.password" value=""/>  -->
