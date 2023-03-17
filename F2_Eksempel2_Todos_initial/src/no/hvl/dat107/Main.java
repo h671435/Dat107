@@ -70,6 +70,9 @@ public class Main {
 		System.out.println(tod);		
 		
 		// g) Endre tekst på todo med pk=3, alternativ måte
+		todoDAO.oppdaterTodo(2, "Moren din e broren din og faren din e besteomren din");
+		List<Todo> todd = todoDAO.finnAlleTodos();
+		System.out.println(todd);
 		
 	}
 	

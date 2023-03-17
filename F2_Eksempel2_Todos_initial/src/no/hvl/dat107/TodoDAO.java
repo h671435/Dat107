@@ -89,7 +89,7 @@ public class TodoDAO {
 		EntityTransaction tx = em.getTransaction();
 
 		try {
-	
+
 			tx.begin();
 			em.persist(t);
 			tx.commit();
@@ -132,7 +132,7 @@ public class TodoDAO {
 
 	/* --------------------------------------------------------------------- */
 
-	public Void oppdaterTodo(int pk, String tekst) {
+	public void oppdaterTodo(int pk, String tekst) {
 
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -153,13 +153,11 @@ public class TodoDAO {
 		} finally {
 			em.close();
 		}
-
-		return null /* ??? */;
 	}
 
 	/* --------------------------------------------------------------------- */
 
-	public Object/* ??? */ oppdaterTekst(/* ??? */) {
+	public void oppdaterTekst(int pk, String tekst) {
 
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -167,7 +165,7 @@ public class TodoDAO {
 		try {
 			tx.begin();
 
-			/* ??? */
+			em.merge(new Todo(pk, tekst));
 
 			tx.commit();
 
@@ -179,7 +177,5 @@ public class TodoDAO {
 		} finally {
 			em.close();
 		}
-
-		return null /* ??? */;
 	}
 }
