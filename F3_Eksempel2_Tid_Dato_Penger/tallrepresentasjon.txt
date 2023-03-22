@@ -1,0 +1,31 @@
+Dere har ikke lært om flyttallsrepresentasjon (binary64) i MAT101 ?! 
+Da har dere sikkert ikke lært om char/tegn/tegnsett etc. heller ?!
+Få på plass til neste år ?!
+
+Det er ikke flyttall vs. fixed som er problemet. Nei. 
+Problemet er skaleringsbasen, om det er 2-talls eller 10-talls.
+
+Noen eksempler (ikke helt korrekte, men illustrerer poenget):
+
+5.125:
+------
+double:     <binære sifre> *  2^eksp 	5.125 = (0000000101001)41   *  2^-3 = 5.125
+double: evt.<binære sifre> *  2^eksp 	5.125 = (1010010000000)2624 *  2^-9 = 5.125
+BigDecimal: <binære sifre> * 10^eksp    5.125 = (1010000000101)5125 * 10^-3 = 5.125
+
+0.1:
+----
+0.1 binært 	= 0.0 0011 0011 0011 0011 0011 0011 osv ...
+
+La oss si vi har 8 bits i mantisse
+	0.1 binært:				= 		(00011001)25  * 2^-8  =  25 /  256 = 0,09765625
+	Normalisert:			= 		(11001100)204 * 2^-11 = 204 / 2048 = 0,099609375
+	Enda mer normalisert:	= (2^8 + 10011001)409 * 2^-12 = 409 / 4096 = 0,099853515625
+BigDecimal: 1 * 10^-1 = 0.1
+
+Java
+----
+float  har 23 bits (~7 siffer) i mantisse (+ 9 bits for eksponent + en for fortegn = 32 bits)
+double har 52 bits (~16 siffer) i mantisse (+ 11 + 1 = 64)
+BigDecimal har fleksibel heltallsdel (sifre) og 32 bits skaleringsdel (hvor komma skal plasseres)
+
