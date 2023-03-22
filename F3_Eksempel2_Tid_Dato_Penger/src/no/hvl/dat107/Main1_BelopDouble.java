@@ -4,10 +4,10 @@ public class Main1_BelopDouble {
 
     public static void main(String[] args) {
 
-        float fireKronerOgTiOre = 4.20f;
-        float tiOre = 0.20f;
+        double fireKronerOgTiOre = 4.20;
+        double tiOre = 0.20;
 
-        float fireKroner = fireKronerOgTiOre - tiOre;
+        double fireKroner = fireKronerOgTiOre - tiOre;
 
         System.out.println(fireKronerOgTiOre);
         System.out.println(tiOre);

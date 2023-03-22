@@ -51,13 +51,10 @@ public class TodoDAO {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			String ql = "select t from Todo t where t.tekst like '" + tekst + "'";
-			TypedQuery<Todo> query = em.createQuery(ql, Todo.class);
-			return query.getResultList().get(0);
-// GET.SINGLERESULT ELLER NOE SÅNT FUNKER OGSÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Fant ingen elementer med tekst: " + tekst);
-			return null;
+			TypedQuery<Todo> query = em.createQuery("SELECT t FROM Todo t WHERE t.tekst LIKE :tekst", Todo.class);
+			query.setParameter("tekst", tekst);
+
+			return query.getSingleResult();
 		} finally {
 			em.close();
 		}

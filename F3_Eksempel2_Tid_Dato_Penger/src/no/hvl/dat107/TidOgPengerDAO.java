@@ -13,7 +13,7 @@ public class TidOgPengerDAO {
 
     public TidOgPengerDAO() {
         emf = Persistence.createEntityManagerFactory("datatyperPersistenceUnit", 
-        		Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+        		Map.of("jakarta.persistence.jdbc.password", "pass"));
     }
 
     public TidOgPenger hentTidOgPengerMedId(int id) {
