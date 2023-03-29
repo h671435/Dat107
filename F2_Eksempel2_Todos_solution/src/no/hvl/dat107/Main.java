@@ -1,5 +1,7 @@
 package no.hvl.dat107;
 
+import java.util.List;
+
 public class Main {
 
 //	private static Scanner scanner = new Scanner(System.in);
@@ -21,12 +23,22 @@ public class Main {
 		TodoDAO todoDAO = new TodoDAO();
 
 		// a) Hente ut todo med pk=2
-		Todo todo1 = todoDAO.finnTodoMedPk(2);
-		System.out.println(todo1);
+//		Todo todo2 = todoDAO.finnTodoMedPk(2);
+//		System.out.println(todo2);
 		
 		// b) Hente ut alle todos 
+		List<Todo> alle = todoDAO.finnAlleTodos();
+		System.out.println(alle);
+		
 		// c.i)   Hente ut SINGLE todo med tekst="Handle mat" 
+		Todo handlemat = todoDAO.finnTodoMedTekst("Handle mat");
+		System.out.println(handlemat);
+		
 		// c.ii)  Hente ut SINGLE todo med tekst="Vaske bilen" (som ikke finnes) 
+		Todo vaske = todoDAO.finnTodoMedTekst("Vaske bilen");
+		System.out.println(vaske);
+		
+		
 		// c.iii) Hente ut LISTE av todos med tekst="Handle mat" 
 		// c.iv)  Hente ut LISTE av todos med tekst="Vaske bilen" (som ikke finnes)
 		
@@ -34,6 +46,7 @@ public class Main {
 //		todoDAO.lagreNyTodo("Støvsuge");
 //		todoDAO.lagreNyTodo(new Todo(4, "Støvsuge"));
 //		todoDAO.lagreNyTodo(4, "Støvsuge");
+		
 //		pauseOgSjekkDatabasen("Etter å ha lagt inn [4 Støvsuge]");
 		
 		

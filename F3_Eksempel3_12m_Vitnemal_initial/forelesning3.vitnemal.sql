@@ -1,43 +1,59 @@
--- SQL for en-til-mange-eksemplet gjennomgått i timen onsdag 16. mars 2022 
+-- SQL for en-til-mange-eksemplet gjennomgått i timen onsdag 22. mars 2023 
 
 DROP SCHEMA IF EXISTS forelesning3 CASCADE;
 CREATE SCHEMA forelesning3;
 SET search_path TO forelesning3;
     
-CREATE TABLE Vitnemal
+CREATE TABLE vitnemal
 (
-	StudNr INTEGER,
-	Studiestart DATE NOT NULL,
-	Studieslutt DATE,
-	CONSTRAINT VitnemalPK PRIMARY KEY (StudNr)
+	studnr INTEGER,
+	studiestart DATE NOT NULL,
+	studieslutt DATE,
+	CONSTRAINT vitnemalPK PRIMARY KEY (studnr)
 );
 
-CREATE TABLE Karakter
+CREATE TABLE karakter
 (
-	KarNr SERIAL,
-	Emnekode CHAR(6) NOT NULL,
-	EksDato DATE NOT NULL,
-	Bokstav CHAR(1),
-	StudNr INTEGER NOT NULL,
-	CONSTRAINT KarakterPK PRIMARY KEY (KarNr),
-	CONSTRAINT KarUnique UNIQUE (Emnekode, StudNr),
-	CONSTRAINT VitnemalFK FOREIGN KEY (StudNr) 
+	karnr SERIAL,
+	emnekode CHAR(6) NOT NULL,
+	eksdato DATE NOT NULL,
+	bokstav CHAR(1),
+	studnr INTEGER NOT NULL,
+	CONSTRAINT narakterPK PRIMARY KEY (karnr),
+	CONSTRAINT karUnique UNIQUE (emnekode, studnr),
+	CONSTRAINT vitnemalFK FOREIGN KEY (studnr) 
 		REFERENCES Vitnemal(StudNr)
 );
 
 INSERT INTO
-  Vitnemal(StudNr, Studiestart, Studieslutt)
+  vitnemal(studnr, studiestart, studieslutt)
 VALUES
     (123456, '2021-08-15', '2024-06-15'),
-    (234567, '2021-08-15', '2024-06-15'),
+    (234567, '2021-08-15', NULL), -- Er ikke ferdig ennå
     (345678, '2021-08-15', '2024-06-15');
 
 -- NB! Databasen genererer selv primærnøkler. De skal ikke oppgis ved INSERT.    
 INSERT INTO
-  Karakter(Emnekode, EksDato, Bokstav, StudNr)
+  karakter(emnekode, eksdato, bokstav, studnr)
 VALUES
     ('DAT107', '2022-05-30', 'A', 123456),
     ('DAT102', '2022-06-04', 'A', 123456),
     ('DAT107', '2022-05-30', 'B', 234567);
-    
 
+    
+-- Finne liste av DAT107-karakterer for studenter som er
+-- ferdig (har sluttdato). Forventer kun denne:
+-- 		(1, DAT107, '2022-05-30', 'A', 123456)
+SELECT k.* 
+FROM karakter AS k 
+--	JOIN vitnemal AS v ON k.studnr = v.studnr
+--  evt.
+NATURAL JOIN vitnemal AS v
+WHERE v.studieslutt IS NOT NULL
+AND k.emnekode LIKE 'DAT107';
+   
+
+    
+    
+    
+    
